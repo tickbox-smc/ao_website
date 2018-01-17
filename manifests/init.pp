@@ -10,8 +10,8 @@
 application ao_website(
   # An application is defined like a class: applciation(){}
   # default number of web and loadbalancer servers in application. Can be overwritten via input parameters
-  $number_webs = 1,
-  $number_lbs = 1,
+  $number_webs = 2,
+  $number_lbs = 2,
 ){
   # iterate X number of times and create a Http service resource with a unique name and store it in the $webs variable, 
   # along with a Lb service resource stored in the $lbs variable.
