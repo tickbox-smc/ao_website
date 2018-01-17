@@ -16,7 +16,7 @@ application ao_website(
   # iterate X number of times and create a Http service resource with a unique name and store it in the $webs variable, 
   # along with a Lb service resource stored in the $lbs variable.
   $webs = $number_webs.map |$i| {Http["http-${name}-${i}"]}
-  $lbs = $number_lbs.map |$i| {Lb["lb-${name}-${i}"]}
+  #$lbs = $number_lbs.map |$i| {Lb["lb-${name}-${i}"]}
 
   #Definition of the database component. Here we define that the database component will export a SQL service resource
   ao_website::db{$name:
@@ -35,11 +35,11 @@ application ao_website(
   # The load balancer definition does not use export or consume statements. We just pass the $webs service resources as an input
   # note: we have a require statement here. This will halt the configuration of the load balancer until the HTTP service resources are created
   #Creating Ruby array with the each method
-  $lbs.each |$i, $lb| {
-    ao_website::lb { "${name}-lb-${i}":
-      balancemembers => $webs,
-      require => $webs,
-    }
+  #$lbs.each |$i, $lb| {
+  #  ao_website::lb { "${name}-lb-${i}":
+  #    balancemembers => $webs,
+  #    require => $webs,
+  #  }
   }
 
 }
