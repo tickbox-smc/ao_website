@@ -10,16 +10,17 @@
 application ao_website(
   # An application is defined like a class: applciation(){}
   # default number of web and loadbalancer servers in application. Can be overwritten via input parameters
-  $number_webs = 1
-  $number_lbs = 1
+  $number_webs = 1,
+  $number_lbs = 1,
 ){
-  # iterate X number of times and create a Http service resource with a unique name and store it in the $webs variable
+  # iterate X number of times and create a Http service resource with a unique name and store it in the $webs variable, 
+  # along with a Lb service resource stored in the $lbs variable.
   $webs = $number_webs.map |$i| {Http["http-${name}-${i}"]}
   $lbs = $number_lbs.map |$i| {Lb["lb-${name}-${i}"]}
-  
+
   #Definition of the database component. Here we define that the database component will export a SQL service resource
   ao_website::db{$name:
-    export => Sql["ao_website-${name"],
+    export => Sql["ao_website-${name}"],
   }
 
   # Loop over $webs and create a unique resource each time. 
@@ -30,7 +31,6 @@ application ao_website(
       export => $web
     }
   }
-
   # Loop over the $lbs variable and create a unique resource each time.
   # The load balancer definition does not use export or consume statements. We just pass the $webs service resources as an input
   # note: we have a require statement here. This will halt the configuration of the load balancer until the HTTP service resources are created
@@ -41,5 +41,6 @@ application ao_website(
       require => $webs,
     }
   }
+
 }
 
