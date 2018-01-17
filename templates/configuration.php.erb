@@ -1,0 +1,42 @@
+<?php
+
+    // SETUP YOUR COUNTER
+        // URL of the folder where script is installed. INCLUDE a trailing "/" !!!
+        $base_url = 'http://<%= @counter_dns %>/';        
+                
+        // database parameters
+        $username="<%= @user %>";
+        $password="<%= @password %>";    
+        $servername="<%= @host %>";
+        $database="<%= @database %>";
+        $tableName="countdetail";    
+    
+    // Optional parameters, if not sure leave with default values
+        // Default image style (font)
+        $default_style = 'web1';
+        
+        // Default counter image extension
+        $default_ext = 'gif';
+        
+        // Minimum number of digits shown (zero-padding). Set to 0 to disable.
+        $min_digits = 0;        
+        
+    // Don't change anything below
+    
+    /* Turn error notices off */
+        error_reporting(E_ALL ^ E_NOTICE);
+        
+    $con = mysql_connect($servername,$username,$password);
+    if (!$con)
+         die('Cannot dadd comments at the moment');
+      else
+         @mysql_select_db($database) or die( "Unable to select database");
+         
+    /* This function handles input parameters making sure 
+  nothing dangerous is passed in */    
+    function input($in) {
+    $out = htmlentities(stripslashes($in));
+    $out = str_replace(array('/','\\'), '', $out);
+    return $out;
+    }     
+?>
