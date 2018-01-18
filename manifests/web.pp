@@ -97,6 +97,6 @@ Ao_website::Web consumes Sql {
 
 Ao_website::Web produces Http {
   http_name => $http_name,
-  http_port => $http_port
+  http_port => $http_port,
   http_ip   => '172.28.128.4',
 }
