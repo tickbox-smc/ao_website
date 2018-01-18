@@ -35,12 +35,11 @@ application ao_website(
   # The load balancer definition does not use export or consume statements. We just pass the $webs service resources as an input
   # note: we have a require statement here. This will halt the configuration of the load balancer until the HTTP service resources are created
   # Creating Ruby array with the each method
-  #$lbs.each |$i, $lb| {
-  #  ao_website::lb { "${name}-lb-${i}":
-  #    balancemembers => $webs,
-  #    require => $webs,
-  #  }
-  #}
-
+  $lbs.each |$i, $lb| {
+    ao_website::lb { "${name}-lb-${i}":
+      balancemembers => $webs,
+      require => $webs,
+    }
+  }
 }
 
