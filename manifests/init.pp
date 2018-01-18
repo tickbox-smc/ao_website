@@ -12,7 +12,6 @@ application ao_website(
   # default number of web and loadbalancer servers in application. Can be overwritten via input parameters
   $number_webs = 1,
   $number_lbs = 1,
-  $http_name,
 ){
   # iterate X number of times and create a Http service resource with a unique name and store it in the $webs variable, 
   # along with a Lb service resource stored in the $lbs variable.
@@ -30,6 +29,7 @@ application ao_website(
     ::ao_website::web { "${name}-web-${i}":
       consume => Sql["ao_website-${name}"],
       export  => $web,
+      http_name => "${name}-web-${i}",
     }
   }
   # Loop over the $lbs variable and create a unique resource each time.
