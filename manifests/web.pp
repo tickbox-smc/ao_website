@@ -94,7 +94,7 @@ Ao_website::Web consumes Sql {
 }
 
 Ao_website::Web produces Http {
-  http_name => $::fqdn,
+  http_name => $::clientcert,
   http_ip   => $::ipaddress,
   http_port => $http_port
 }

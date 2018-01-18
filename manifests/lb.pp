@@ -9,7 +9,7 @@ define ao_website::lb(
   class { 'haproxy': }
 
   # The load balancer must listen on certain ports and IPs
-  haproxy::listen { $::fqdn:
+  haproxy::listen { $::clientcert:
     ipaddress   => '*',
     ports       => '80',
     mode        => 'http',
@@ -24,7 +24,7 @@ define ao_website::lb(
   $balancemembers.each |$balancemember |{
     haproxy::balancermember { $balancemember['http_name']:
       server_names => $balancemember['http_name'],
-      listening_service => $::fqdn,
+      listening_service => $::clientcert,
       options => "check",
       ipaddresses => $balancemember['http_ip'],
       ports => $balancemember['http_port']
