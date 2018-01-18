@@ -38,7 +38,7 @@ application ao_website(
   $lbs.each |$i, $lb| {
     ao_website::lb { "${name}-lb-${i}":
       balancemembers => $webs,
-      require => $webs,
+#      require => $webs,
     }
   }
 
