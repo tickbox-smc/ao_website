@@ -10,7 +10,9 @@ define ao_website::web (
   $host,
   $database,
   $http_port = '8090',
-  
+  $http_name = $trusted['certname'],
+  $http_ip   = $server_facts[serverip],
+
 ){
   $website_version  =lookup('ao_website::version')
   $website_dns      =lookup('ao_website::dns')
@@ -94,8 +96,7 @@ Ao_website::Web consumes Sql {
 }
 
 Ao_website::Web produces Http {
-  http_name => $trusted['certname'],
-  #http_name => $::clientcert,
-  http_ip   => $::ipaddress,
+  http_name => $http_name,
+  http_ip   => $http_ip,
   http_port => $http_port
 }
