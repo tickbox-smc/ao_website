@@ -28,7 +28,7 @@ application ao_website(
   $webs.each |$i, $web|{
     ::ao_website::web { "${name}-web-${i}":
   #    consume => Sql["ao_website-${name}"],
-  #    export => $web,
+      export => $web,
     }
   }
   # Loop over the $lbs variable and create a unique resource each time.
