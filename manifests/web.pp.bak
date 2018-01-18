@@ -11,12 +11,10 @@ define ao_website::web (
   $database,
   $http_port = '8080',
 ){
-  $website_version  =lookup('ao_website::version')
-  $website_dns      =lookup('ao_website::dns')
-  $counter_dns      =lookup('ao_website::counter_dns')
+  $website_version  =hiera('ao_website::version')
+  $website_dns      =hiera('ao_website::dns')
+  $counter_dns      =hiera('ao_website::counter_dns')
  
-  notify{"This is ${name}":}
-
   #Require yum Gemfury repo
   require yum
         
@@ -87,13 +85,13 @@ define ao_website::web (
 Ao_website::Web consumes Sql {
   username => $user,
   password => $password,
-  host     => $host,
+  host => $host,
   database => $database,
-  port     => $http_port
+  port => $port
 }
 
 Ao_website::Web produces Http {
-  http_name => $::fqdn,
-  http_ip   => $::ipaddress,
+  http_name => $::clientcert,
+  http_ip => $::ipaddress,
   http_port => $http_port
 }
