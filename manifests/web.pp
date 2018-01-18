@@ -11,9 +11,9 @@ define ao_website::web (
   $database,
   $http_port = '8080',
 ){
-  $website_version  =hiera('ao_website::version')
-  $website_dns      =hiera('ao_website::dns')
-  $counter_dns      =hiera('ao_website::counter_dns')
+  $website_version  =lookup('ao_website::version')
+  $website_dns      =lookup('ao_website::dns')
+  $counter_dns      =lookup('ao_website::counter_dns')
  
   notify{"This is ${name}":}
 
