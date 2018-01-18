@@ -10,8 +10,8 @@ define ao_website::web (
   $host,
   $database,
   $http_port = '8090',
-  $http_name = 'fred',
-  $http_ip   = 'bob',
+#  $http_name = 'fred',
+#  $http_ip   = 'bob',
 
 ){
   $website_version  =lookup('ao_website::version')
@@ -96,7 +96,7 @@ Ao_website::Web consumes Sql {
 }
 
 Ao_website::Web produces Http {
-  http_name => $http_name,
-  http_ip   => $http_ip,
+  http_name => $::fqdn,
+  http_ip   => $::ipaddress,
   http_port => $http_port
 }
