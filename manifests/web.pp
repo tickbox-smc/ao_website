@@ -82,13 +82,13 @@ define ao_website::web (
 #Multiple resource statements here: we define our consume statement and the produce statement.
 
 #Note: produce, NOT export
-Ao_website::Web consumes Sql {
-  username => $user,
-  password => $password,
-  host     => $host,
-  database => $database,
-  port     => $http_port
-}
+#Ao_website::Web consumes Sql {
+#  username => $user,
+#  password => $password,
+#  host     => $host,
+#  database => $database,
+#  port     => $http_port
+#}
 
 Ao_website::Web produces Http {
   http_name => $::clientcert,
