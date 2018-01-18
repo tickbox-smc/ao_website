@@ -85,9 +85,9 @@ define ao_website::web (
 Ao_website::Web consumes Sql {
   username => $user,
   password => $password,
-  host => $host,
+  host     => $host,
   database => $database,
-  port => $port
+  port     => $http_port
 }
 
 Ao_website::Web produces Http {
