@@ -83,15 +83,15 @@ define ao_website::web (
 
 #Note: produce, NOT export
 Ao_website::Web consumes Sql {
-        username => $user,
-        password => $password,
-        host => $host,
-        database => $database,
-        port => $port
+  username => $user,
+  password => $password,
+  host => $host,
+  database => $database,
+  port => $port
 }
 
 Ao_website::Web produces Http {
-        http_name => $::clientcert,
-        http_ip => $::ipaddress,
-        http_port => $http_port
+  http_name => $::clientcert,
+  http_ip => $::ipaddress,
+  http_port => $http_port
 }
