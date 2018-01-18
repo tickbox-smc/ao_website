@@ -17,6 +17,8 @@ application ao_website(
   # along with a Lb service resource stored in the $lbs variable.
   $webs = $number_webs.map |$i| {Http["http-${name}-${i}"]}
   $lbs = $number_lbs.map |$i| {Ao_website::Lb["lb-${name}-${i}"]}
+  
+  notify{$webs:}
 
   #Definition of the database component. Here we define that the database component will export a SQL service resource
   ao_website::db{$name:
