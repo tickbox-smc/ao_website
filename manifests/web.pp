@@ -15,6 +15,8 @@ define ao_website::web (
   $website_dns      =hiera('ao_website::dns')
   $counter_dns      =hiera('ao_website::counter_dns')
  
+  notify{"This is ${name}":}
+
   #Require yum Gemfury repo
   require yum
         
@@ -82,13 +84,13 @@ define ao_website::web (
 #Multiple resource statements here: we define our consume statement and the produce statement.
 
 #Note: produce, NOT export
-#Ao_website::Web consumes Sql {
-#  username => $user,
-#  password => $password,
-#  host     => $host,
-#  database => $database,
-#  port     => $http_port
-#}
+Ao_website::Web consumes Sql {
+  username => $user,
+  password => $password,
+  host     => $host,
+  database => $database,
+  port     => $http_port
+}
 
 Ao_website::Web produces Http {
   http_name => $::clientcert,
