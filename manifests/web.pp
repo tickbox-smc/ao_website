@@ -10,7 +10,7 @@ define ao_website::web (
   $host,
   $database,
   $http_port = '8090',
-#  $http_name = 'fred',
+  $http_name,
 #  $http_ip   = 'bob',
 
 ){
