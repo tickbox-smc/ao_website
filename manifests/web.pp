@@ -96,7 +96,7 @@ Ao_website::Web consumes Sql {
 }
 
 Ao_website::Web produces Http {
-  http_name => $::fqdn,
-  http_ip   => $::ipaddress,
+  http_name => 'agent3.tickbox',
+  http_ip   => '172.28.128.4',
   http_port => $http_port
 }
