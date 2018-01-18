@@ -25,12 +25,12 @@ application ao_website(
 
   # Loop over $webs and create a unique resource each time. 
   # In the definition we declare that the SQL service resource will be consumed and a HTTP service resource is exported
-  $webs.each |$i, $web|{
-    ao_website::web { "${name}-web-${i}":
-      consume => Sql["ao_website-${name}"],
-      export => $web
-    }
-  }
+  #$webs.each |$i, $web|{
+  #  ao_website::web { "${name}-web-${i}":
+  #    consume => Sql["ao_website-${name}"],
+  #    export => $web
+  #  }
+  #}
   # Loop over the $lbs variable and create a unique resource each time.
   # The load balancer definition does not use export or consume statements. We just pass the $webs service resources as an input
   # note: we have a require statement here. This will halt the configuration of the load balancer until the HTTP service resources are created
