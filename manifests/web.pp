@@ -10,7 +10,6 @@ define ao_website::web (
   $host,
   $database,
   $http_port = '8090',
-  $http_name,
   
 ){
   $website_version  =lookup('ao_website::version')
