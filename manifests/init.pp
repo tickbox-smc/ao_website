@@ -18,8 +18,6 @@ application ao_website(
   $webs = $number_webs.map |$i| {Http["http-${name}-${i}"]}
   $lbs = $number_lbs.map |$i| {Ao_website::Lb["lb-${name}-${i}"]}
   
-  notify{$webs:}
-
   #Definition of the database component. Here we define that the database component will export a SQL service resource
   ao_website::db{$name:
     export => Sql["ao_website-${name}"],
@@ -28,7 +26,7 @@ application ao_website(
   # Loop over $webs and create a unique resource each time. 
   # In the definition we declare that the SQL service resource will be consumed and a HTTP service resource is exported
   $webs.each |$i, $web|{
-    ao_website::web{ "ao_website-web-${i}":
+    ao_website::web { "${name}-web-${i}":
       consume => Sql["ao_website-${name}"],
       export => $web
     }
