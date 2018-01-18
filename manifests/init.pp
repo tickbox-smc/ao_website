@@ -27,8 +27,8 @@ application ao_website(
   # In the definition we declare that the SQL service resource will be consumed and a HTTP service resource is exported
   $webs.each |$i, $web|{
     ::ao_website::web { "${name}-web-${i}":
-  #    consume => Sql["ao_website-${name}"],
-      export => $web,
+      consume => Sql["ao_website-${name}"],
+      #export => $web,
     }
   }
   # Loop over the $lbs variable and create a unique resource each time.
