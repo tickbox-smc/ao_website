@@ -19,7 +19,7 @@ application ao_website(
   $lbs = $number_lbs.map |$i| {Ao_website::Lb["lb-${name}-${i}"]}
   
   #Definition of the database component. Here we define that the database component will export a SQL service resource
-  ao_website::db{$name:
+  ::ao_website::db{$name:
     export => Sql["ao_website-${name}"],
   }
 
@@ -28,7 +28,7 @@ application ao_website(
   $webs.each |$i, $web|{
     ::ao_website::web { "${name}-web-${i}":
       consume => Sql["ao_website-${name}"],
-      #export => $web,
+      export => $web,
     }
   }
   # Loop over the $lbs variable and create a unique resource each time.
